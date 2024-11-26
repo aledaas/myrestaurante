@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "966677902689",
+    "project_id": "mirestaurante-f7e9a",
+    "storage_bucket": "mirestaurante-f7e9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966677902689:android:6808ddbae5b93defa14120",
+        "android_client_info": {
+          "package_name": "com.aledaas.Myrestaurant"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA66PSJCRMHwMRB-pATvuuUvIZKirXvrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

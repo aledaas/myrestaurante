@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+
+    <dimen name="item_offset">6dp</dimen>
+    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="corner_radius_medium">14dp</dimen>
+    <dimen name="corner_radius_large">30dp</dimen>
+    <dimen name="spacing_medium">14dp</dimen>
+    <dimen name="no_spacing">0dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xxlarge">40dp</dimen>
+    <dimen name="button_height">60dp</dimen>
+
+</resources>
