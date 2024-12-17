@@ -3,7 +3,7 @@
 
     <!--application name-->
     <string name="app_name">Your Restaurant App</string>
-    <string name="app_copyright">Copyright &#169; 2023 Solodroid \n All rights reserved</string>
+    <string name="app_copyright">Copyright &#169; 2024 Solodroid \n All rights reserved</string>
 
     <!--bottom navigation-->
     <string name="title_nav_recent">Home</string>
