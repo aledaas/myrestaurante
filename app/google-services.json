@@ -1,39 +1,26 @@
 {
   "project_info": {
-    "project_number": "299397051410",
-    "firebase_url": "https://solodroid-project-aac2a.firebaseio.com",
-    "project_id": "solodroid-project-aac2a",
-    "storage_bucket": "solodroid-project-aac2a.appspot.com"
+    "project_number": "608663987527",
+    "project_id": "tucarta-faa3f",
+    "storage_bucket": "tucarta-faa3f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:299397051410:android:29be8289c0d07982",
+        "mobilesdk_app_id": "1:608663987527:android:235cd17929ea96aaa45862",
         "android_client_info": {
-          "package_name": "com.app.yourrestaurantapp"
+          "package_name": "com.aledaas.tucarta"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "299397051410-4iikf0f6h8b7545m5kgcomf9lpkme1f6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBZRevVjnN6SzBrlV1HGWSg0g_31wwDEwM"
+          "current_key": "AIzaSyCHPlxxVEjY7HPJXH27FSH7yfV6xz9qcEo"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
           "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
