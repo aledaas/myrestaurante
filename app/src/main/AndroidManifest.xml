@@ -20,14 +20,20 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <activity
+            android:name=".activities.ActivityRestaurantSelector"
+            android:exported="true"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/AppTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
             android:name=".activities.ActivitySplash"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activities.MainActivity"
@@ -79,15 +85,12 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_onesignal_default" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/color_light_accent" />
-
         <meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"
             android:value="DISABLE" />
-
     </application>
 
 </manifest>

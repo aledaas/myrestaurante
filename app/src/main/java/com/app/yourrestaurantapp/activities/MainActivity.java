@@ -3,6 +3,7 @@ package com.app.yourrestaurantapp.activities;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.database.SQLException;
 import android.net.Uri;
@@ -76,10 +77,20 @@ public class MainActivity extends AppCompatActivity {
         AppBarLayout appBarLayout = findViewById(R.id.tab_appbar_layout);
         ((CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams()).setBehavior(new AppBarLayoutBehavior());
 
+        SharedPreferences prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+        String selectedRestaurantId = prefs.getString("SELECTED_RESTAURANT_ID", "default_value");
+
+
+        if (!selectedRestaurantId.equals("default_value")) {
+            Log.d("MainActivity", "Restaurante seleccionado: " + selectedRestaurantId);
+        } else {
+            Log.d("MainActivity", "No se seleccionó ningún restaurante previamente.");
+        }
+
         toolbar = findViewById(R.id.toolbar);
         toolbar_title = findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
-        toolbar_title.setText(getString(R.string.app_name));
+        toolbar_title.setText(getString(R.string.app_name) + " - Restaurante " + selectedRestaurantId);
 
         cart_badge = findViewById(R.id.cart_badge);
 

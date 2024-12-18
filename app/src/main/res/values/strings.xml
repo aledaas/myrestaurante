@@ -1,137 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--application name-->
-    <string name="app_name">Your Restaurant App</string>
-    <string name="app_copyright">Copyright &#169; 2024 Solodroid \n All rights reserved</string>
+    <!--nombre de la aplicación-->
+    <string name="app_name">Tu Carta !!</string>
+    <string name="app_copyright">Copyright &#169; 2025 </string>
 
-    <!--bottom navigation-->
-    <string name="title_nav_recent">Home</string>
-    <string name="title_nav_post">Updates</string>
-    <string name="title_nav_help">Help</string>
-    <string name="title_nav_profile">Profile</string>
+    <!--navegación inferior-->
+    <string name="title_nav_recent">Inicio</string>
+    <string name="title_nav_post">Noticias</string>
+    <string name="title_nav_help">Ayuda</string>
+    <string name="title_nav_profile">Perfil</string>
 
-    <!--home-->
-    <string name="txt_home_category">Category</string>
-    <string name="txt_home_menu">Menu</string>
+    <!--inicio-->
+    <string name="txt_home_category">Categorías</string>
+    <string name="txt_home_menu">Menú</string>
 
-    <!--share text-->
-    <string name="share_app">I Would like to share this Your Restaurant App with you. Here You Can Download This Application from PlayStore</string>
-    <string name="share_product_section_one">Find</string>
-    <string name="share_product_section_two">with price</string>
-    <string name="share_product_section_three">! Get it now in Your Restaurant App App!</string>
+    <!--texto para compartir-->
+    <string name="share_app">Me gustaría compartir contigo esta Aplicación de Restaurante. Aquí puedes descargar esta aplicación desde PlayStore</string>
+    <string name="share_product_section_one">Encuentra</string>
+    <string name="share_product_section_two">con precio</string>
+    <string name="share_product_section_three">! Consíguelo ahora en Tu Aplicación de Restaurante!</string>
 
-    <!--network-->
-    <string name="no_internet">There is problem with your internet connection or the server currently down</string>
-    <string name="msg_error_load_web_page">Error load web page</string>
+    <!--red-->
+    <string name="no_internet">Hay un problema con tu conexión a Internet o el servidor está actualmente inactivo</string>
+    <string name="msg_error_load_web_page">Error al cargar la página web</string>
 
-    <!--menu, cart & checkout-->
-    <string name="title_cart">Shopping Cart</string>
-    <string name="action_cart">My Cart</string>
-    <string name="action_clear">Clear All</string>
-    <string name="confirm">Confirmation</string>
-    <string name="number_order">Number of order: </string>
-    <string name="clear_all_order">Do you want to clear your all order?</string>
-    <string name="clear_one_order">Do you want to clear this order?</string>
-    <string name="remove_cart_item">Do you want to remove this item from cart?</string>
-    <string name="db_exist_alert">Do you want to remove your previous order?</string>
-    <string name="msg_empty_cart">Your cart is empty!</string>
-    <string name="msg_no_history">Your order history is empty!</string>
-    <string name="empty_cart">Whoops, your cart is empty</string>
-    <string name="btn_explore_menu">Explore the menu</string>
-    <string name="btn_add_to_cart">ADD TO CART</string>
-    <string name="btn_remove_from_cart">REMOVE FROM CART</string>
-    <string name="btn_out_of_stock">OUT OF STOCK</string>
-    <string name="msg_stock_not_enough">Stock is not enough</string>
-    <string name="msg_stock_below_0">product quantity cannot be 0</string>
-    <string name="msg_add_cart">Added to cart</string>
-    <string name="msg_remove_cart">Removed from cart</string>
-    <string name="title_checkout">Checkout</string>
-    <string name="btn_checkout">CHECKOUT</string>
-    <string name="checkout_your_name">Your Name</string>
-    <string name="checkout_email">Your Email</string>
-    <string name="checkout_phone_number">Phone Number</string>
-    <string name="checkout_order_list">Order Detail</string>
-    <string name="checkout_add_comment">Comment</string>
-    <string name="no_order_menu">No order</string>
-    <string name="txt_order">Order:</string>
-    <string name="txt_tax">Tax:</string>
+    <!--menú, carrito y pago-->
+    <string name="title_cart">Carrito de Compras</string>
+    <string name="action_cart">Mi Carrito</string>
+    <string name="action_clear">Vaciar Todo</string>
+    <string name="confirm">Confirmación</string>
+    <string name="number_order">Número de orden: </string>
+    <string name="clear_all_order">¿Quieres vaciar todas tus órdenes?</string>
+    <string name="clear_one_order">¿Quieres eliminar esta orden?</string>
+    <string name="remove_cart_item">¿Quieres eliminar este artículo del carrito?</string>
+    <string name="db_exist_alert">¿Quieres eliminar tu orden anterior?</string>
+    <string name="msg_empty_cart">¡Tu carrito está vacío!</string>
+    <string name="msg_no_history">¡Tu historial de órdenes está vacío!</string>
+    <string name="empty_cart">Vaya, tu carrito está vacío</string>
+    <string name="btn_explore_menu">Explorar el menú</string>
+    <string name="btn_add_to_cart">AÑADIR AL CARRITO</string>
+    <string name="btn_remove_from_cart">ELIMINAR DEL CARRITO</string>
+    <string name="btn_out_of_stock">SIN STOCK</string>
+    <string name="msg_stock_not_enough">No hay suficiente stock</string>
+    <string name="msg_stock_below_0">La cantidad del producto no puede ser 0</string>
+    <string name="msg_add_cart">Añadido al carrito</string>
+    <string name="msg_remove_cart">Eliminado del carrito</string>
+    <string name="title_checkout">Pagar</string>
+    <string name="btn_checkout">PAGAR</string>
+    <string name="checkout_your_name">Tu Nombre</string>
+    <string name="checkout_email">Tu Correo Electrónico</string>
+    <string name="checkout_phone_number">Número de Teléfono</string>
+    <string name="checkout_order_list">Detalle de Orden</string>
+    <string name="checkout_add_comment">Comentario</string>
+    <string name="no_order_menu">Sin órdenes</string>
+    <string name="txt_order">Orden:</string>
+    <string name="txt_tax">Impuesto:</string>
     <string name="txt_total">Total:</string>
-    <string name="txt_shipping">Shipping</string>
-    <string name="checkout_fill_form">please complete fill the form first!</string>
-    <string name="checkout_dialog_title">Process Checkout</string>
-    <string name="checkout_dialog_msg">Are you sure want to checkout?</string>
-    <string name="checkout_submit_title">Please wait</string>
-    <string name="checkout_submit_msg">Please wait, submitting your order&#8230;</string>
-    <string name="checkout_success_title">Congratulation</string>
-    <string name="checkout_success_msg">Thank you for ordering, your order will be review soon, invoice detail will be sent to your email when the order is ready.</string>
-    <string name="checkout_error">Checkout error, please try again later.</string>
+    <string name="txt_shipping">Envío</string>
+    <string name="checkout_fill_form">¡Por favor completa el formulario primero!</string>
+    <string name="checkout_dialog_title">Procesar Pago</string>
+    <string name="checkout_dialog_msg">¿Estás seguro de que quieres proceder al pago?</string>
+    <string name="checkout_submit_title">Por favor espera</string>
+    <string name="checkout_submit_msg">Por favor espera, enviando tu orden&#8230;</string>
+    <string name="checkout_success_title">Felicidades</string>
+    <string name="checkout_success_msg">Gracias por tu pedido. Tu orden será revisada pronto. Los detalles de la factura se enviarán a tu correo electrónico cuando la orden esté lista.</string>
+    <string name="checkout_error">Error en el pago, intenta de nuevo más tarde.</string>
     <string name="checkout_option_ok">OK</string>
-    <string name="checkout_address">Address</string>
-    <string name="checkout_shipping">Shipping</string>
-    <string name="title_history">Order History</string>
-    <string name="title_profile">User Profile</string>
-    <string name="btn_process_checkout">PLACE ORDER</string>
+    <string name="checkout_address">Dirección</string>
+    <string name="checkout_shipping">Envío</string>
+    <string name="title_history">Historial de Órdenes</string>
+    <string name="title_profile">Perfil de Usuario</string>
+    <string name="btn_process_checkout">REALIZAR PEDIDO</string>
 
-    <!--profile preferences-->
-    <string name="pref_group_profile">PROFILE</string>
-    <string name="pref_title_name">Name</string>
-    <string name="pref_title_email">Email</string>
-    <string name="pref_title_phone">Phone Number</string>
-    <string name="pref_title_address">Address</string>
-    <string name="default_your_name">Your Name</string>
-    <string name="default_your_email">your.email@gmail.com</string>
+    <!--preferencias del perfil-->
+    <string name="pref_group_profile">PERFIL</string>
+    <string name="pref_title_name">Nombre</string>
+    <string name="pref_title_email">Correo Electrónico</string>
+    <string name="pref_title_phone">Número de Teléfono</string>
+    <string name="pref_title_address">Dirección</string>
+    <string name="default_your_name">Tu Nombre</string>
+    <string name="default_your_email">tu.email@gmail.com</string>
     <string name="default_your_phone">+628123456789</string>
-    <string name="default_your_address">Your Address</string>
-    <string name="pref_msg_invalid_name">Invalid Name Input</string>
-    <string name="pref_msg_invalid_email">Invalid Email Input</string>
-    <string name="pref_msg_invalid_phone">Invalid Phone Input</string>
-    <string name="pref_msg_invalid_address">Invalid Address Input</string>
-    <string name="btn_update_profile">Update profile</string>
-    <string name="msg_updating_profile">Updating profile&#8230;</string>
-    <string name="loading_msg">Please Wait&#8230;</string>
-    <string name="txt_items">People</string>
-    <string name="title_img_save">Save</string>
-    <string name="title_img_close">Close</string>
-    <string name="msg_copy">Purchase code copied</string>
-    <string name="failed_fetch_data">Could not fetch the data! Pleas try again.</string>
-    <string name="btn_edit_profile">EDIT</string>
-    <string name="txt_profile_history">Order History</string>
-    <string name="txt_profile_location">Map Location</string>
-    <string name="txt_profile_search_history">Clear search history</string>
-    <string name="txt_profile_clear_cache">Clear cache</string>
-    <string name="txt_profile_rate">Rate Us</string>
-    <string name="txt_profile_privacy">Privacy Policy</string>
-    <string name="txt_total_order">Total Order</string>
-    <string name="txt_profile_share">Share</string>
-    <string name="txt_profile_about">About</string>
+    <string name="default_your_address">Tu Dirección</string>
+    <string name="pref_msg_invalid_name">Entrada de nombre inválida</string>
+    <string name="pref_msg_invalid_email">Entrada de correo inválida</string>
+    <string name="pref_msg_invalid_phone">Entrada de teléfono inválida</string>
+    <string name="pref_msg_invalid_address">Entrada de dirección inválida</string>
+    <string name="btn_update_profile">Actualizar perfil</string>
+    <string name="msg_updating_profile">Actualizando perfil&#8230;</string>
+    <string name="loading_msg">Por favor espera&#8230;</string>
+    <string name="txt_items">Personas</string>
+    <string name="title_img_save">Guardar</string>
+    <string name="title_img_close">Cerrar</string>
+    <string name="msg_copy">Código de compra copiado</string>
+    <string name="failed_fetch_data">¡No se pudieron obtener los datos! Por favor, inténtalo de nuevo.</string>
+    <string name="btn_edit_profile">EDITAR</string>
+    <string name="txt_profile_history">Historial de Órdenes</string>
+    <string name="txt_profile_location">Ubicación en el Mapa</string>
+    <string name="txt_profile_search_history">Borrar historial de búsqueda</string>
+    <string name="txt_profile_clear_cache">Borrar caché</string>
+    <string name="txt_profile_rate">Califícanos</string>
+    <string name="txt_profile_privacy">Política de Privacidad</string>
+    <string name="txt_total_order">Orden Total</string>
+    <string name="txt_profile_share">Compartir</string>
+    <string name="txt_profile_about">Acerca de</string>
 
-    <!--dialog choose option-->
-    <string name="dialog_option_yes">Yes</string>
+    <!--dialogo elegir opción-->
+    <string name="dialog_option_yes">Sí</string>
     <string name="dialog_option_ok">OK</string>
-    <string name="dialog_option_exit">Exit</string>
+    <string name="dialog_option_exit">Salir</string>
     <string name="dialog_option_no">No</string>
-    <string name="dialog_option_cancel">Cancel</string>
-    <string name="dialog_option_add">Add</string>
+    <string name="dialog_option_cancel">Cancelar</string>
+    <string name="dialog_option_add">Agregar</string>
 
-    <!--cache, search & history-->
-    <string name="title_dialog_clear_cache">Clear Cache</string>
-    <string name="msg_dialog_clear_cache">Are you sure want to clear cache?</string>
-    <string name="msg_cache_cleared">Cache has been cleared</string>
-    <string name="search_query_text">Search&#8230;</string>
-    <string name="search_hint">Search&#8230;</string>
-    <string name="msg_whops">Whoops!</string>
-    <string name="msg_no_search_input">Please fill search input</string>
-    <string name="msg_no_search_results">No menu found! Please try enter another keyword!</string>
-    <string name="msg_no_item">No menu available at this time!</string>
-    <string name="msg_about_version">Version</string>
-    <string name="title_dialog_clear_search_history">Clear Search History</string>
-    <string name="msg_dialog_clear_search_history">Are you sure want to clear your search history?</string>
-    <string name="clearing_process">Clearing search history&#8230;</string>
-    <string name="clearing_success">Search history cleared successfully&#8230;</string>
-    <string name="clearing_empty">Your search history is empty</string>
+    <!--salida-->
+    <string name="msg_exit">¿Quieres salir de la aplicación?</string>
 
-    <!--exit-->
-    <string name="msg_exit">Do you want to exit the app?</string>
+
+    <!--caché, búsqueda e historial-->
+    <string name="title_dialog_clear_cache">Borrar Caché</string>
+    <string name="msg_dialog_clear_cache">¿Estás seguro de que quieres borrar la caché?</string>
+    <string name="msg_cache_cleared">La caché ha sido borrada</string>
+    <string name="search_query_text">Buscar&#8230;</string>
+    <string name="search_hint">Buscar&#8230;</string>
+    <string name="msg_whops">¡Vaya!</string>
+    <string name="msg_no_search_input">Por favor, completa el campo de búsqueda</string>
+    <string name="msg_no_search_results">¡No se encontró ningún menú! Intenta con otra palabra clave.</string>
+    <string name="msg_no_item">¡No hay menús disponibles en este momento!</string>
+    <string name="msg_about_version">Versión</string>
+    <string name="title_dialog_clear_search_history">Borrar Historial de Búsqueda</string>
+    <string name="msg_dialog_clear_search_history">¿Estás seguro de que quieres borrar tu historial de búsqueda?</string>
+    <string name="clearing_process">Borrando historial de búsqueda&#8230;</string>
+    <string name="clearing_success">Historial de búsqueda borrado con éxito&#8230;</string>
+    <string name="clearing_empty">Tu historial de búsqueda está vacío</string>
+
+    <!-- Strings usados en fragmentos de navegación -->
+    <string name="first_fragment_label">Primer Fragmento</string>
+    <string name="second_fragment_label">Segundo Fragmento</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
+        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
+        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
+        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
+        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
+        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
+        bibendum, vel congue leo egestas.\n\n
+        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
+        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
+        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
+        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
+        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
+        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
+        est.\n\n
+        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
+        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
+        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
+        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
+        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
+        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
+        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
+        convallis.\n\n
+        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
+        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
+        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
+        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
+        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
+        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
+        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    </string>
 
 </resources>

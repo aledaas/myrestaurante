@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -192,6 +193,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void fetchData() {
+        Log.d("FetchData", "Fetching data from URL: " + GET_HOME);
         StringRequest request = new StringRequest(GET_HOME, response -> {
             if (response == null) {
                 showFailedView(true);
