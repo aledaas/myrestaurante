@@ -6,6 +6,7 @@ import static com.app.yourrestaurantapp.utilities.Constant.arrayListProduct;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -101,7 +103,7 @@ public class FragmentHome extends Fragment {
         recyclerViewProduct.setLayoutManager(new GridLayoutManager(activity, 2));
         recyclerViewProduct.addItemDecoration(new ItemOffsetDecoration(activity, R.dimen.item_offset));
 
-        recyclerViewCategory.setLayoutManager(new GridLayoutManager(activity, 2, GridLayoutManager.HORIZONTAL, false));
+        recyclerViewCategory.setLayoutManager(new GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false));
         recyclerViewCategory.addItemDecoration(new ItemOffsetDecoration(activity, R.dimen.item_offset));
 
         sliderList = new ArrayList<>();
@@ -193,8 +195,21 @@ public class FragmentHome extends Fragment {
     }
 
     private void fetchData() {
-        Log.d("FetchData", "Fetching data from URL: " + GET_HOME);
-        StringRequest request = new StringRequest(GET_HOME, response -> {
+        // Recuperar el ID del restaurante almacenado en SharedPreferences
+        SharedPreferences prefs = activity.getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE);
+        String restaurantId = prefs.getString("SELECTED_RESTAURANT_ID", null);
+
+        if (restaurantId == null) {
+            Toast.makeText(activity, "No se ha seleccionado un restaurante.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Agregar el ID del restaurante como parámetro en la URL
+        String urlWithParam = GET_HOME + "&restaurant_id=" + restaurantId;
+
+        Log.d("Get_home", "Fetching data from URL: " + urlWithParam);
+
+        StringRequest request = new StringRequest(urlWithParam, response -> {
             if (response == null) {
                 showFailedView(true);
                 swipeProgress(false);

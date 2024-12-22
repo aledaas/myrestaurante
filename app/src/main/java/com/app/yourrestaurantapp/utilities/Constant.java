@@ -20,6 +20,7 @@ public class Constant {
     public static final String GET_HELP = BASE_URL + "/api/api.php?get_help";
     public static final String GET_SETTINGS = BASE_URL + "/api/api.php?get_settings";
     public static final String GET_SHIPPING = BASE_URL + "/api/api.php?get_shipping";
+    public static final String GET_RESTOS = BASE_URL + "/api/api.php?get_restos";
     public static final String POST_ORDER = BASE_URL + "/api/api.php?post_order";
 
     public static List<Slider> arrayListSlider = new ArrayList<>();

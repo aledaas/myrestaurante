@@ -79,10 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
         String selectedRestaurantId = prefs.getString("SELECTED_RESTAURANT_ID", "default_value");
+        String selectedRestaurantName = prefs.getString("SELECTED_RESTAURANT_NAME", "default_value");
 
 
         if (!selectedRestaurantId.equals("default_value")) {
-            Log.d("MainActivity", "Restaurante seleccionado: " + selectedRestaurantId);
+            Log.d("MainActivity", "Restaurante seleccionado: " + selectedRestaurantName);
         } else {
             Log.d("MainActivity", "No se seleccionó ningún restaurante previamente.");
         }
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar_title = findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbar);
-        toolbar_title.setText(getString(R.string.app_name) + " - Restaurante " + selectedRestaurantId);
+        toolbar_title.setText(getString(R.string.app_name) +  selectedRestaurantName);
 
         cart_badge = findViewById(R.id.cart_badge);
 

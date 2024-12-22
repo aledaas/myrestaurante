@@ -63,7 +63,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.MyView
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Category category = categoryList.get(position);
         holder.category_name.setText(category.getCategoryName());
-        holder.product_count.setText(category.getProductCount() + " " + context.getResources().getString(R.string.txt_items));
+        holder.product_count.setText(category.getProductCount());
 
         if (position <= 1) {
             Tools.setMargins(holder.card_view, context.getResources().getDimensionPixelOffset(R.dimen.item_offset), 0, 0, 0);
