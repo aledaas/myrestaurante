@@ -49,15 +49,15 @@ public class ActivitySplash extends AppCompatActivity {
                             response.getString("map_location"),
                             response.getString("privacy_policy")
                     );
-                    startMainActivity();
+                    startActivitySelector();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    startMainActivity();
+                    startActivitySelector();
                     Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         }, error -> {
-            startMainActivity();
+            startActivitySelector();
             Toast.makeText(getApplicationContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
         });
         MyApplication.getInstance().addToRequestQueue(jsonObjReq);
@@ -71,5 +71,14 @@ public class ActivitySplash extends AppCompatActivity {
             finish();
         }, Config.SPLASH_TIME);
     }
+    private void startActivitySelector() {
+        new Handler().postDelayed(() -> {
+            progressBar.setVisibility(View.GONE);
+            Intent intent = new Intent(getApplicationContext(), ActivityRestaurantSelector.class);
+            startActivity(intent);
+            finish();
+    }, Config.SPLASH_TIME);
 
+
+    }
 }

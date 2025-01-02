@@ -2,12 +2,12 @@
 <resources>
 
     <!--app main color-->
-    <color name="color_light_status_bar">#8C239E</color>
-    <color name="color_light_primary">#9B27AF</color>
-    <color name="color_light_accent">#B636CC</color>
+    <color name="color_light_status_bar">#C9A52D</color>
+    <color name="color_light_primary">#DEC161</color>
+    <color name="color_light_accent">#EFBA0C</color>
     <color name="color_light_background">#FFFFFF</color>
     <color name="color_light_bottom_navigation">#EFF4F8</color>
-    <color name="color_light_active_indicator">#F5D0FB</color>
+    <color name="color_light_active_indicator">#EFD993</color>
     <color name="color_light_icon">#797979</color>
 
     <!--other color-->
@@ -33,5 +33,7 @@
     <color name="color_dialog_navigation_bar_light">#989A9C</color>
     <color name="color_dialog_background_dark_overlay">#5E000000</color>
     <color name="color_dialog_status_bar_dark">#091217</color>
+    <color name="color_marron_claro">#C9A52D</color>
+
 
 </resources>
