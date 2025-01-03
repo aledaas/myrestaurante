@@ -15,5 +15,5 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "YourRestaurantApp_3.1.0"
+rootProject.name = "TuCarta.Restaurant_3.1.0"
 include ':app'

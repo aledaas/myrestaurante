@@ -10,7 +10,7 @@
         android:maxSdkVersion="28" />
 
     <application
-        android:name=".activities.MyApplication"
+        android:name="com.app.restaurant.activities.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/simbolo"
         android:label="@string/app_name"
@@ -20,14 +20,14 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name=".activities.ActivityRestaurantSelector"
+            android:name="com.app.restaurant.activities.ActivityRestaurantSelector"
             android:exported="true"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/AppTheme">
 
         </activity>
         <activity
-            android:name=".activities.ActivitySplash"
+            android:name="com.app.restaurant.activities.ActivitySplash"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true">
             <intent-filter>
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.app.restaurant.activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true">
             <intent-filter>
@@ -46,40 +46,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ActivityCart"
+            android:name="com.app.restaurant.activities.ActivityCart"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityProduct"
+            android:name="com.app.restaurant.activities.ActivityProduct"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityProductDetail"
+            android:name="com.app.restaurant.activities.ActivityProductDetail"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivitySearch"
+            android:name="com.app.restaurant.activities.ActivitySearch"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityCheckout"
+            android:name="com.app.restaurant.activities.ActivityCheckout"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityHistory"
+            android:name="com.app.restaurant.activities.ActivityHistory"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityHelp"
+            android:name="com.app.restaurant.activities.ActivityHelp"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityPostDetail"
+            android:name="com.app.restaurant.activities.ActivityPostDetail"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityImageDetail"
+            android:name="com.app.restaurant.activities.ActivityImageDetail"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityNotificationDetail"
+            android:name="com.app.restaurant.activities.ActivityNotificationDetail"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivityWebView"
+            android:name="com.app.restaurant.activities.ActivityWebView"
             android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name=".activities.ActivitySettings"
+            android:name="com.app.restaurant.activities.ActivitySettings"
             android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <meta-data

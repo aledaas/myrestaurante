@@ -110,7 +110,7 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <com.app.yourrestaurantapp.utilities.RtlViewPager
+            <com.app.restaurant.utilities.RtlViewPager
                 android:id="@+id/viewpager_rtl"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

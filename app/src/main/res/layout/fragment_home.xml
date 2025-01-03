@@ -52,7 +52,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <com.app.yourrestaurantapp.utilities.RtlViewPager
+                            <com.app.restaurant.utilities.RtlViewPager
                                 android:id="@+id/view_pager_slider_rtl"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"

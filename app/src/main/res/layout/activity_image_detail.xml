@@ -6,7 +6,7 @@
     android:background="@color/color_black"
     android:fitsSystemWindows="false">
 
-    <com.app.yourrestaurantapp.utilities.TouchImageView
+    <com.app.restaurant.utilities.TouchImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
