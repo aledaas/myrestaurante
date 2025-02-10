@@ -142,7 +142,8 @@
                             app:fabCustomSize="30dp"
                             app:maxImageSize="18dp"
                             app:pressedTranslationZ="0dp"
-                            app:tint="@color/color_white" />
+                            app:tint="@color/color_white"
+                            android:contentDescription="@string/share"/>
 
                     </LinearLayout>
 

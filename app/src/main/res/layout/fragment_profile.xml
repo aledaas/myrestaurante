@@ -35,7 +35,7 @@
                         android:id="@+id/txt_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="User Name"
+                        android:text="Usuario Demo"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -60,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="Collins Street West Victoria 8007 Australia, Envato HQ: 121 King Street, Melbourne Victoria 3000 Australia" />
+                        android:text="Tu Dirección postal" />
 
 
                 </LinearLayout>

@@ -42,7 +42,8 @@
                 android:layout_width="@dimen/spacing_xxlarge"
                 android:layout_height="@dimen/spacing_xxlarge"
                 android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_search" />
+                android:src="@drawable/ic_search"
+                android:contentDescription="@string/search" />
 
             <View
                 android:layout_width="3dp"
@@ -58,7 +59,8 @@
                     android:layout_width="@dimen/spacing_xxlarge"
                     android:layout_height="@dimen/spacing_xxlarge"
                     android:background="?selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_cart" />
+                    android:src="@drawable/ic_cart"
+                    android:contentDescription="@string/cart" />
 
                 <ImageView
                     android:id="@+id/cart_badge"

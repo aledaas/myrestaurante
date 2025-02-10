@@ -61,7 +61,8 @@
                             android:layout_width="@dimen/spacing_xxlarge"
                             android:layout_height="@dimen/spacing_xxlarge"
                             android:background="?selectableItemBackgroundBorderless"
-                            android:src="@drawable/ic_share_white" />
+                            android:src="@drawable/ic_share_white"
+                            android:contentDescription="@string/share"/>
 
                         <View
                             android:layout_width="3dp"
@@ -77,7 +78,8 @@
                                 android:layout_width="@dimen/spacing_xxlarge"
                                 android:layout_height="@dimen/spacing_xxlarge"
                                 android:background="?selectableItemBackgroundBorderless"
-                                android:src="@drawable/ic_cart" />
+                                android:src="@drawable/ic_cart"
+                                android:contentDescription="@string/cart"/>
 
                             <ImageView
                                 android:id="@+id/cart_badge"
@@ -130,6 +132,7 @@
                                 android:fitsSystemWindows="true"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/ic_loading"
+                                android:contentDescription="@string/product_image"
                                 app:layout_constraintDimensionRatio="H,1:1"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"

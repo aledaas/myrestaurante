@@ -53,7 +53,8 @@
                         android:layout_width="@dimen/spacing_xxlarge"
                         android:layout_height="@dimen/spacing_xxlarge"
                         android:background="?selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_share_white" />
+                        android:src="@drawable/ic_share_white"
+                        android:contentDescription="@string/share"/>
 
                 </LinearLayout>
 
@@ -79,7 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_marginEnd="3dp"
-                    android:scrollbars="none" />
+                    android:scrollbars="none"
+                    android:contentDescription="@string/content"/>
 
             </LinearLayout>
 

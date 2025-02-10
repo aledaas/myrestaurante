@@ -82,9 +82,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="24dp"
                                 android:background="@android:color/transparent"
+                                android:contentDescription="@string/banners"
                                 app:tabBackground="@drawable/bg_indicator_selector"
                                 app:tabGravity="center"
-                                app:tabIndicatorHeight="0dp" />
+                                app:tabIndicatorHeight="0dp"
+                                />
 
                         </LinearLayout>
 
