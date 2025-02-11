@@ -3,7 +3,7 @@ package com.app.restaurant;
 public class Config {
 
     //your admin panel url
-    public static final String ADMIN_PANEL_URL = "https://backend.tucarta.restaurant/";
+    public static final String ADMIN_PANEL_URL = "https://backend.tucarta.restaurant";
   //  public static final String ADMIN_PANEL_URL = "http://192.168.0.23:8080";
 
     //OneSignal App Id

@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.os.Bundle;
 import android.os.Handler;
@@ -67,6 +68,8 @@ public class ActivityCheckout extends AppCompatActivity {
     public static final String TIME_DIALOG_ID = "timePicker";
     public static final String DATE_DIALOG_ID = "datePicker";
     String str_name, str_email, str_phone, str_address, str_date, str_time, str_shipping, str_order_list, str_order_total, str_comment;
+
+    private String selectedRestaurantId;
     String data_order_list = "";
     MaterialProgressDialog.Builder progressDialog;
     DBHelper dbhelper;
@@ -101,6 +104,9 @@ public class ActivityCheckout extends AppCompatActivity {
         }
 
         // Creating Volley newRequestQueue
+        SharedPreferences prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+        selectedRestaurantId = prefs.getString("SELECTED_RESTAURANT_ID", "default_value");
+
         requestQueue = Volley.newRequestQueue(this);
         progressDialog = new MaterialProgressDialog.Builder(this);
         progressDialog.build();
@@ -115,6 +121,7 @@ public class ActivityCheckout extends AppCompatActivity {
         edt_order_list = findViewById(R.id.edt_order_list);
         edt_order_total = findViewById(R.id.edt_order_total);
         edt_comment = findViewById(R.id.edt_comment);
+
 
         edt_date_picker = findViewById(R.id.edt_date_picker);
         findViewById(R.id.btn_date_picker).setOnClickListener(view -> {
@@ -254,6 +261,7 @@ public class ActivityCheckout extends AppCompatActivity {
         str_order_total = edt_order_total.getText().toString();
         str_comment = edt_comment.getText().toString();
 
+
         if (str_name.equalsIgnoreCase("") ||
                 str_email.equalsIgnoreCase("") ||
                 str_phone.equalsIgnoreCase("") ||
@@ -281,6 +289,9 @@ public class ActivityCheckout extends AppCompatActivity {
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, POST_ORDER, ServerResponse -> {
+            // Log de la respuesta de la API
+//            android.util.Log.e("API_RESPONSE", "Response: " + ServerResponse);
+
             new Handler().postDelayed(() -> {
                 progressDialog.dismiss();
                 dialogSuccessOrder();
@@ -307,6 +318,7 @@ public class ActivityCheckout extends AppCompatActivity {
                 params.put("order_list", str_order_list);
                 params.put("order_total", str_order_total);
                 params.put("comment", str_comment);
+                params.put("restaurant_id", selectedRestaurantId);
                 if (!playerId.equals("")) {
                     params.put("player_id", playerId);
                 } else {
