@@ -186,5 +186,6 @@
     <string name="image_product">imagen del producto</string>
     <string name="content_web">Contenido web</string>
     <string name="banners">Pulicidades</string>
+    <string name="restaurant_image">Logo</string>
 
 </resources>

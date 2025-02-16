@@ -2,19 +2,31 @@ package com.app.restaurant.activities;
 
 import static com.app.restaurant.utilities.Constant.GET_RESTOS;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.app.restaurant.adapters.RestaurantGridAdapter;
+import com.app.restaurant.models.Restaurant;
 import com.app.tucarta.restaurant.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,78 +37,138 @@ import java.util.List;
 
 public class ActivityRestaurantSelector extends AppCompatActivity {
 
-    private Spinner spinnerRestaurants;
-    private Button btnSelect;
-    private List<String> restaurantNames = new ArrayList<>();
-    private List<String> restaurantIds = new ArrayList<>();
+    private RecyclerView recyclerViewRestaurants;
+    private RestaurantGridAdapter adapter;
+    private List<Restaurant> restaurantList = new ArrayList<>();
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_selector);
 
-        spinnerRestaurants = findViewById(R.id.spinner_restaurants);
-        btnSelect = findViewById(R.id.btn_select_restaurant);
+        // Inicializar RecyclerView con GridLayoutManager
+        recyclerViewRestaurants = findViewById(R.id.recyclerViewRestaurants);
+        recyclerViewRestaurants.setLayoutManager(new GridLayoutManager(this, 2));
+        adapter = new RestaurantGridAdapter(this, restaurantList, restaurant -> {
+            Intent intent = new Intent(ActivityRestaurantSelector.this, MainActivity.class);
+            intent.putExtra("restaurant_id", restaurant.getRestoId());
+            intent.putExtra("restaurant_name", restaurant.getRestoTitle());
+            startActivity(intent);
+        });
+        recyclerViewRestaurants.setAdapter(adapter);
 
+        // Inicializar cliente de ubicación
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        loadRestaurants();
+        // Obtener ubicación del usuario y buscar zona
+        getUserLocation();
+    }
 
-        btnSelect.setOnClickListener(view -> {
-            int position = spinnerRestaurants.getSelectedItemPosition();
-            if (position >= 0) {
-                String selectedRestaurantId = restaurantIds.get(position);
-                String selectedRestaurantName = restaurantNames.get(position);
+    /**
+     * Obtiene la ubicación del usuario y busca la zona más cercana.
+     */
+    private void getUserLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+            return;
+        }
 
-                // Guardar el ID del restaurante en SharedPreferences
-                SharedPreferences prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("SELECTED_RESTAURANT_ID", selectedRestaurantId);
-                editor.putString("SELECTED_RESTAURANT_NAME", selectedRestaurantName);
-                editor.apply();
+        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    double userLat = location.getLatitude();
+                    double userLng = location.getLongitude();
+                    Log.d("UserLocation", "Lat: " + userLat + ", Lng: " + userLng);
 
-                // Navegar a MainActivity
-                Intent intent = new Intent(ActivityRestaurantSelector.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
-                Toast.makeText(this, "Por favor, seleccione un restaurante", Toast.LENGTH_SHORT).show();
+                    // Buscar la zona más cercana
+                    findNearestZone(userLat, userLng);
+                } else {
+                    // Si no se obtiene la ubicación, cargar todos los restaurantes por defecto
+                    loadRestaurants(null);
+                }
             }
         });
     }
 
-    private void loadRestaurants() {
-        Log.d("LoadRestaurants", "Fetching restaurants from URL: " + GET_RESTOS);
+    /**
+     * Llama a la API para obtener la zona más cercana.
+     */
+    private void findNearestZone(double lat, double lng) {
+        String url = "https://backend.tucarta.restaurant/api/api.php?get_nearest_zone&lat=" + lat + "&lng=" + lng;
 
-        StringRequest request = new StringRequest(GET_RESTOS, response -> {
+        StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
+            try {
+                JSONObject jsonResponse = new JSONObject(response);
+                if (jsonResponse.has("zona_id")) {
+                    int zonaId = jsonResponse.getInt("zona_id");
+                    Log.d("NearestZone", "Zona ID: " + zonaId);
+
+                    // Guardar la zona en SharedPreferences
+                    SharedPreferences prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putInt("SELECTED_ZONE_ID", zonaId);
+                    editor.apply();
+
+                    // Cargar los restaurantes de esta zona
+                    loadRestaurants(zonaId);
+                } else {
+                    Toast.makeText(this, "No se encontró una zona cercana", Toast.LENGTH_SHORT).show();
+                    loadRestaurants(null);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                loadRestaurants(null);
+            }
+        }, error -> {
+            Log.e("ZoneError", "Error al obtener la zona más cercana: " + error.getMessage());
+            loadRestaurants(null);
+        });
+
+        Volley.newRequestQueue(this).add(request);
+    }
+
+    /**
+     * Carga los restaurantes de la zona encontrada o todos si no se encuentra una zona.
+     */
+    private void loadRestaurants(Integer zonaId) {
+        String url = GET_RESTOS;
+        if (zonaId != null) {
+            url = "https://backend.tucarta.restaurant/api/api.php?get_restos&zona_id=" + zonaId;
+        }
+
+        Log.d("LoadRestaurants", "Fetching restaurants from URL: " + url);
+
+        StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
             if (response == null) {
                 Toast.makeText(this, "Error al cargar restaurantes", Toast.LENGTH_SHORT).show();
                 return;
             }
             try {
-                // Parsear la respuesta JSON
                 JSONObject json = new JSONObject(response);
-               // JSONArray restaurantResponse = new JSONArray(response);
                 JSONArray restaurantResponse = json.getJSONArray("restos");
 
-                // Limpiar las listas actuales
-                restaurantNames.clear();
-                restaurantIds.clear();
+                restaurantList.clear();
 
-                // Procesar cada restaurante en la respuesta
                 for (int i = 0; i < restaurantResponse.length(); i++) {
                     JSONObject restaurantObject = restaurantResponse.getJSONObject(i);
                     String id = restaurantObject.getString("resto_id");
                     String name = restaurantObject.getString("resto_title");
+                    String imageUrl = restaurantObject.getString("resto_image");
+                    String description = restaurantObject.getString("resto_description");
+                    String address = restaurantObject.getString("resto_address");
+                    String celular = restaurantObject.getString("resto_celular");
+                    String telfijo = restaurantObject.getString("resto_telfijo");
+                    String whatsapp = restaurantObject.getString("resto_whatshap");
+                    String date = restaurantObject.getString("resto_date");
 
-                    restaurantIds.add(id);
-                    restaurantNames.add(name);
+                    restaurantList.add(new Restaurant(id, name, imageUrl, description, address, celular, telfijo, whatsapp, date));
                 }
 
-                // Configurar el Spinner
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                        android.R.layout.simple_spinner_item, restaurantNames);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerRestaurants.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -107,7 +179,17 @@ public class ActivityRestaurantSelector extends AppCompatActivity {
             Toast.makeText(this, "Error al conectar con el servidor", Toast.LENGTH_SHORT).show();
         });
 
-        // Agregar la solicitud a la cola de Volley
-        MyApplication.getInstance().addToRequestQueue(request);
+        Volley.newRequestQueue(this).add(request);
+    }
+
+    /**
+     * Maneja la respuesta del usuario al pedir permisos de ubicación.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            getUserLocation();
+        }
     }
 }
