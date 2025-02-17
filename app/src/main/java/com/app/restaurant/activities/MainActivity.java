@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -45,6 +46,9 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -69,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Habilitar el botón de atrás en la barra de acción
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         view = findViewById(android.R.id.content);
         Tools.lightNavigation(this);
 
@@ -376,13 +385,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            // Regresar al selector de restaurantes en lugar de solo cerrar la actividad
+            Intent intent = new Intent(this, ActivityRestaurantSelector.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -395,15 +406,23 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (Config.ENABLE_RTL_MODE) {
             if (viewPagerRtl.getCurrentItem() != 0) {
-                viewPagerRtl.setCurrentItem((0), true);
+                viewPagerRtl.setCurrentItem(0, true);
             } else {
-                exitApp();
+                // En lugar de salir, regresar al selector de restaurantes
+                Intent intent = new Intent(this, ActivityRestaurantSelector.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         } else {
             if (viewPager.getCurrentItem() != 0) {
-                viewPager.setCurrentItem((0), true);
+                viewPager.setCurrentItem(0, true);
             } else {
-                exitApp();
+                // En lugar de salir, regresar al selector de restaurantes
+                Intent intent = new Intent(this, ActivityRestaurantSelector.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         }
     }
