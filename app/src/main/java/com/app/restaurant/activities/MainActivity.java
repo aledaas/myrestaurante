@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         String selectedRestaurantId = prefs.getString("SELECTED_RESTAURANT_ID", "default_value");
         String selectedRestaurantName = prefs.getString("SELECTED_RESTAURANT_NAME", "default_value");
 
-
         if (!selectedRestaurantId.equals("default_value")) {
             Log.d("MainActivity", "Restaurante seleccionado: " + selectedRestaurantName);
         } else {

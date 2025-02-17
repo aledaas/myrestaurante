@@ -2,6 +2,8 @@ package com.app.restaurant.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +30,7 @@ public class RestaurantGridAdapter extends RecyclerView.Adapter<RestaurantGridAd
         void onRestaurantClick(Restaurant restaurant);
     }
 
-    public RestaurantGridAdapter(Context context, List<Restaurant> restaurantList, OnRestaurantClickListener listener) {
+    public RestaurantGridAdapter(Context context, List<Restaurant> restaurantList) {
         this.context = context;
         this.restaurantList = restaurantList;
         this.listener = listener;
@@ -61,6 +63,14 @@ public class RestaurantGridAdapter extends RecyclerView.Adapter<RestaurantGridAd
 
         // Manejo de clic en el restaurante → ABRIR LA CARTA
         holder.itemView.setOnClickListener(v -> {
+            SharedPreferences prefs = context.getSharedPreferences("APP_PREFS", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("SELECTED_RESTAURANT_ID", restaurant.getRestoId());
+            editor.putString("SELECTED_RESTAURANT_NAME", restaurant.getRestoTitle());
+            editor.apply(); // Guardar los valores de inmediato
+
+            Log.d("SelectedRestaurant", "Guardado en SharedPreferences - ID: " + restaurant.getRestoId() + ", Name: " + restaurant.getRestoTitle());
+
             Intent intent = new Intent(context, MainActivity.class);
             intent.putExtra("restaurant_id", restaurant.getRestoId());
             intent.putExtra("restaurant_name", restaurant.getRestoTitle());

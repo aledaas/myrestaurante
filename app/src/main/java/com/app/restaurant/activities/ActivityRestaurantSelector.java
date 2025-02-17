@@ -51,12 +51,7 @@ public class ActivityRestaurantSelector extends AppCompatActivity {
         // Inicializar RecyclerView con GridLayoutManager
         recyclerViewRestaurants = findViewById(R.id.recyclerViewRestaurants);
         recyclerViewRestaurants.setLayoutManager(new GridLayoutManager(this, 2));
-        adapter = new RestaurantGridAdapter(this, restaurantList, restaurant -> {
-            Intent intent = new Intent(ActivityRestaurantSelector.this, MainActivity.class);
-            intent.putExtra("restaurant_id", restaurant.getRestoId());
-            intent.putExtra("restaurant_name", restaurant.getRestoTitle());
-            startActivity(intent);
-        });
+        adapter = new RestaurantGridAdapter(this, restaurantList);
         recyclerViewRestaurants.setAdapter(adapter);
 
         // Inicializar cliente de ubicación
