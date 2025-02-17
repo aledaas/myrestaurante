@@ -1,5 +1,13 @@
 package com.app.restaurant.activities;
 
+import com.google.android.gms.tasks.Task;
+import com.google.android.play.core.appupdate.AppUpdateInfo;
+import com.google.android.play.core.appupdate.AppUpdateManager;
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
+
+
+import android.widget.Toast;
+
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -45,14 +53,17 @@ import com.app.restaurant.utilities.Tools;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.play.core.install.model.AppUpdateType;
 
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int UPDATE_REQUEST_CODE = 123;
     public static final String TAG = "MainActivity";
     private BottomNavigationView navigation;
     public ViewPager viewPager;
@@ -142,6 +153,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void checkForUpdate() {
+        AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(this);
+        Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
+
+        appUpdateInfoTask.addOnSuccessListener(appUpdateInfo -> {
+            if (appUpdateInfo.updateAvailability() == com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
+                    && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                try {
+                    appUpdateManager.startUpdateFlowForResult(
+                            appUpdateInfo, AppUpdateType.IMMEDIATE, this, UPDATE_REQUEST_CODE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == UPDATE_REQUEST_CODE) {
+            if (resultCode != RESULT_OK) {
+                Toast.makeText(this, "Actualización cancelada", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
     private void initViewPager() {
         if (Config.ENABLE_RTL_MODE) {
             viewPagerRtl.setVisibility(View.VISIBLE);

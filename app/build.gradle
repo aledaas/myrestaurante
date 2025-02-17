@@ -10,8 +10,8 @@ android {
         applicationId 'com.aledaas.tucarta'
         minSdk 21
         targetSdk 35
-        versionCode 3
-        versionName '3.1.2'
+        versionCode 8
+        versionName '3.1.4'
         multiDexEnabled true
     }
     compileOptions {
@@ -53,4 +53,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.8.4'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.play:app-update:2.1.0'
 }
