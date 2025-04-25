@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,7 +26,11 @@ import com.app.restaurant.adapters.RestaurantGridAdapter;
 import com.app.restaurant.models.Restaurant;
 import com.app.tucarta.restaurant.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
@@ -70,29 +76,34 @@ public class ActivityRestaurantSelector extends AppCompatActivity {
             return;
         }
 
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+        LocationRequest locationRequest = new LocationRequest.Builder(
+                Priority.PRIORITY_HIGH_ACCURACY, // prioridad
+                10000 // intervalo en milisegundos
+        )
+                .setMinUpdateIntervalMillis(5000) // intervalo más rápido
+                .build();
+
+        LocationCallback locationCallback = new LocationCallback() {
             @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
+            public void onLocationResult(@NonNull LocationResult locationResult) {
+                if (locationResult == null) return;
+                for (Location location : locationResult.getLocations()) {
                     double userLat = location.getLatitude();
                     double userLng = location.getLongitude();
                     Log.d("UserLocation", "Lat: " + userLat + ", Lng: " + userLng);
-
-                    // Buscar la zona más cercana
-                    findNearestZone(userLat, userLng);
-                } else {
-                    // Si no se obtiene la ubicación, cargar todos los restaurantes por defecto
-                    loadRestaurants(null);
+                    checkUserZone(userLat, userLng);
                 }
             }
-        });
+        };
+
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
     }
 
     /**
      * Llama a la API para obtener la zona más cercana.
      */
     private void findNearestZone(double lat, double lng) {
+        Log.e("depurando", "ingresando a findNearestZone: con estas coordenadas: " + lat + " " + lng);
         String url = "https://backend.tucarta.restaurant/api/api.php?get_nearest_zone&lat=" + lat + "&lng=" + lng;
 
         StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
@@ -130,6 +141,7 @@ public class ActivityRestaurantSelector extends AppCompatActivity {
      * Carga los restaurantes de la zona encontrada o todos si no se encuentra una zona.
      */
     private void loadRestaurants(Integer zonaId) {
+        Log.e("depurando", "ingresando a loadRestaurants: con esta zona: " + zonaId);
         String url = GET_RESTOS;
         if (zonaId != null) {
             url = "https://backend.tucarta.restaurant/api/api.php?get_restos&zona_id=" + zonaId;
@@ -186,5 +198,28 @@ public class ActivityRestaurantSelector extends AppCompatActivity {
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             getUserLocation();
         }
+    }
+    private void checkUserZone(double lat, double lng) {
+        Log.e("depurando", "ingresando a checkUserZone: con estas coordenadas: " + lat + " " + lng);
+        SharedPreferences prefs = getSharedPreferences("APP_PREFS", MODE_PRIVATE);
+        int selectedZoneId = prefs.getInt("SELECTED_ZONE_ID", -1);
+        String url = "https://backend.tucarta.restaurant/api/api.php?check_user_zone&lat=" + lat + "&lng=" + lng + "&zona_id=" + selectedZoneId;
+
+        StringRequest request = new StringRequest(Request.Method.GET, url, response -> {
+            try {
+                JSONObject jsonResponse = new JSONObject(response);
+                boolean isInZone = jsonResponse.getBoolean("is_in_zone");
+                if (!isInZone) {
+                    Toast.makeText(this, "Te has salido de la zona. Actualizando restaurantes...", Toast.LENGTH_LONG).show();
+                    findNearestZone(lat, lng);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> {
+            Log.e("ZoneCheck", "Error verificando la zona: " + error.getMessage());
+        });
+
+        Volley.newRequestQueue(this).add(request);
     }
 }
